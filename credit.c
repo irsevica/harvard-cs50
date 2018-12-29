@@ -37,93 +37,85 @@ int main(void)
     }
     while (cc_number <=0 || invalid_input == 1);
     
-    //calculate checksum
-    long temp = cc_number;
+    // Get product of numbers multiplied by two for checksum equation
     int checksum = 0;
-    while (temp > 0)
+
+    for (long temp = cc_number; temp > 0; temp /= 100)
     {
         long cur_num = (temp / 10) % 10;
         cur_num = (int)cur_num;
         int product = cur_num * 2;
         if (product >= 10)
         {
-           int first_digit;
-           while(product >=10)
-           {
-               first_digit = product / 10;
-           }
+           int first_digit = product / 10;
            int last_digit = product % 10;
            product = first_digit + last_digit;
         }
         checksum += product;
-        printf("%ld", temp);
-        temp /= 100;
     }
 
-    printf("%d", checksum);
-
-    temp = cc_number;
-    while (temp > 0)
+    // Add other numbers to checksum running total
+    for (long temp = cc_number; temp > 0; temp /=100)
     {
         long cur_num = temp % 10;
         checksum += (int)cur_num;
-        temp /= 100;
     }
 
-    printf("%d", checksum);
-
-    if (checksum % 10 != 0)
+    if (checksum % 10 == 0)
     {
-        printf("Invalid credit card number!");
+        // Get total digits of card num
+        int total_digits = 0;
+        for (long temp = cc_number; temp > 0; temp /= 10)
+        {
+            total_digits++;
+        }
+        
+        // Get first digit of card num
+
+        long first_digit;
+        for (long temp = cc_number; temp > 0; temp /= 10 )
+        {
+            first_digit = temp % 10;
+        }
+        first_digit = (int)first_digit;
+
+        // Get second digit of card num
+
+        long second_digit;
+        for (long temp = cc_number; temp > 0; temp /= 10 )
+        {
+            long test = temp / 100;
+            if (test == 0)
+            {
+                second_digit = temp % 10;
+                break;
+            }
+            second_digit = temp % 10;
+        } 
+        second_digit = (int)second_digit;
+
+        // Concatenate first two digits
+        int prefix_digits = concatenate(first_digit, second_digit);
+        
+        // Verify card type
+        if ((total_digits == 15 && prefix_digits == 34) || prefix_digits == 37)
+        {
+            printf("Credit card is AMEX\n");
+        }
+
+        if ((total_digits == 16 && prefix_digits == 51) || prefix_digits == 52 || prefix_digits == 53 || prefix_digits == 54 || prefix_digits == 55)
+        {
+            printf("Credit card is MASTERCARD\n");
+        }
+
+        if (total_digits == 13 || (total_digits == 16 && first_digit == 4))
+        {
+            printf("Credit card is VISA\n");
+        }
     }
-
-    int total_digits;
-    temp = cc_number;
-    while (temp != 0)
+    else
     {
-        temp /= 10;
-        total_digits++;
-    }
-
-    printf("%d", total_digits);
-
-    temp = cc_number;
-    long first_digit;
-    while (temp >= 0)
-    {
-        first_digit = temp / 10;
-        temp /= 10;
-    }
-    first_digit = (int)first_digit;
-
-    //printf("%d", first_digit);
-
-    temp = cc_number;
-    long second_digit;
-    while (temp > 0)
-    {
-        second_digit = temp / 10;
-        temp /= 10;
-    } 
-    second_digit = (int)second_digit;
-    //printf("%d", second_digit);
-
-
-    int prefix_digits = concatenate(first_digit, second_digit);
-    
-    if ((total_digits == 15 && prefix_digits == 34) || prefix_digits == 37)
-    {
-        printf("Credit card is Amex\n");
-    }
-
-    if ((total_digits == 16 && prefix_digits == 51) || prefix_digits == 52 || prefix_digits == 53 || prefix_digits == 54 || prefix_digits == 55)
-    {
-        printf("Credit card is MasterCard\n");
-    }
-
-    if (total_digits == 13 || (total_digits == 16 && first_digit == 4))
-    {
-        printf("Credit card is Visa\n");
+        printf("INVALID CARD NUM\n");
     }
 }
 
