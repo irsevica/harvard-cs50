@@ -34,7 +34,7 @@ int main(void)
     printf("\n");
 
     // Pyramid logic based on user input - right aligned pyramid only
-    for( int i = 1; i <= height; i++ )
+    for( int i = 0; i < height; i++ )
     {
         int y = 0;
         int space_rqd = height - i;
@@ -44,7 +44,7 @@ int main(void)
             y++;
         }
         int x = 0;
-        while (x < i - 1)
+        while (x <= i - 1)
         {
             printf("#");
             x++;
@@ -57,7 +57,7 @@ int main(void)
     printf("\n");
 
     // Pyramid logic based on user input - full pyramid
-    for( int i = 1; i <= height; i++ )
+    for( int i = 0; i < height; i++ )
     {
         int y = 0;
         int space_rqd = height - i;
@@ -67,14 +67,14 @@ int main(void)
             y++;
         }
         int x = 0;
-        while (x < i)
+        while (x <= i)
         {
             printf("#");
             x++;
         }
         printf("  ");
         x = 0;
-        while (x < i - 1)
+        while (x <= i - 1)
         {
             printf("#");
             x++;
