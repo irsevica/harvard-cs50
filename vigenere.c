@@ -1,3 +1,5 @@
+// Encrypts based on key word --> shifts text input by the alpha character index of each letter of the keyword one by one.
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
