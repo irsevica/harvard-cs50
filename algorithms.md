@@ -128,6 +128,22 @@ Call the first element of the array "sorted". Repeat until all elements are sort
 
 **Best-case scenario**: The array is already perfectly sorted, and we simply keep moving the line between "unsorted" and "sorted" as we examine each element. Notation: Ω(n).
 
+## Merge Sort
+
+In merge sort, the idea of the algorithm is to sort smaller arrays and then combine those arrays together (merge them) in sorted order.
+
+Merge sort leverages something called **recursion**.
+
+### In pseudocode:
+
+* Sort the left half of the array (assuming n > 1)
+* Sort the right half of the array (assuming n > 1)
+* Merge the two halves together
+
+**Worst-case scenario**: We have to split n elements up and recombine them, effectively doubling the sorted subarrays as we build them up (combining sorted 1-element arrays into 2-element arrays, combining sorted 2-element arrays into 4-element arrays...) Notation: O(n log n).
+
+**Best-case scenario**: The array is already perfectly sorted. But we still have to split and recombine it back together with this algorithm. Ω(n log n).
+
 # Search algorithms
 
 ## Linear Search
@@ -232,4 +248,3 @@ int collatz(int n)
 }
 
 ```
-
