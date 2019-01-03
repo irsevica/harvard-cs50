@@ -163,3 +163,73 @@ Repeat until the (sub)array is of size 0:
 
 **Best-case scenario**: The target element is at the midpoint of the full array, and so we can stop looking immediately after we start. Notation: Ω(1).
 
+# Recursion
+
+We might describe an implementation of an algorithim as being particularly "elegant" if it solves a problem in a way that is both interesting and easy to visualise.
+
+The technique of recursion is a very common way to implement such an "elegant" solution.
+
+The definition of a recursive function is one that, as part of its execution, invokes itself.
+
+Every recursive function has two cases that could apply, given any input.
+
+* The base case, which when triggered will terminate the recursive process.
+* The recursive case, which is where the recursion will actually occur.
+
+Code example:
+
+```c
+// Implementing a factorial function
+int fact(int n)
+{
+    // base case
+    if (n == 1)
+        return 1;
+    // recursion case
+    else
+        return n * fact(n-1);
+}
+
+```
+
+In general, but not always, recursive functions replace loops in non-recursive functions.
+
+It's also possible to have more than one base or recursive case, if the program might recurse or terminate in different ways, depending on the input being passed in.
+
+Examples:
+
+**Multiple base cases**: The Fibonacci number sequence is defined as follows:
+
+* The first element is 0
+* The second element is 1
+* The nth element is the sum of the (n-1)th and (n-2)th elements.
+
+**Multiple recursive cases**: The Collatz conjecture. The Collatz conjecture applies to positive integers and specultes that it is always possible to get "back to 1" if you follow these steps:
+* If n is 1, stop.
+* Otherwise, if n is even, repeat this process on n/2.
+* Otherwise, if n is odd, repeat this process on 3n + 1.
+
+Code example:
+
+```c
+int collatz(int n)
+{
+    int steps = 0;
+    // base case
+    if (n == 1)
+        return steps;
+    // recursion case
+    else if (n % 2 == 0)
+    {
+        steps++;
+        return steps + collatz(n/2);
+    }
+    else
+    {
+        steps++;
+        return steps + collatz(3*n + 1);
+    }
+}
+
+```
+
