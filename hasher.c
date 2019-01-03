@@ -1,12 +1,8 @@
-// Encrypts based on key word --> shifts text input by the alpha character index of each letter of the keyword one by one.
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <unistd.h>
-
-#define MAX_TXT_SIZE 256
 
 int main(int argc, const char *argv[])
 {
